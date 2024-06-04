@@ -157,6 +157,7 @@
     <ClInclude Include="..\Library\tinygltf\stb_image_write.h" />
     <ClInclude Include="..\Library\tinygltf\tiny_gltf.h" />
     <ClInclude Include="Src\Application\main.h" />
+    <ClInclude Include="Src\Application\Object\Box\Box.h" />
     <ClInclude Include="Src\Application\Object\Card\Card0\card0.h" />
     <ClInclude Include="Src\Application\Object\Card\Card1\card1.h" />
     <ClInclude Include="Src\Application\Object\Card\SqPolyBase.h" />
@@ -164,8 +165,10 @@
     <ClInclude Include="Src\Application\Object\Donut\donut.h" />
     <ClInclude Include="Src\Application\Object\GLaser\GLaser.h" />
     <ClInclude Include="Src\Application\Object\Heli\Heli.h" />
+    <ClInclude Include="Src\Application\Object\Heli\Rotor\Rotor.h" />
     <ClInclude Include="Src\Application\Object\pplane\pplane.h" />
     <ClInclude Include="Src\Application\Object\Seeker\Seeker.h" />
+    <ClInclude Include="Src\Application\Object\Stage\Water\Water.h" />
     <ClInclude Include="Src\Application\Object\terrain1\terrain1.h" />
     <ClInclude Include="Src\Application\Scene\BaseScene\BaseScene.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\GameScene.h" />
@@ -217,6 +220,7 @@
     <ClCompile Include="..\Library\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Library\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />
+    <ClCompile Include="Src\Application\Object\Box\Box.cpp" />
     <ClCompile Include="Src\Application\Object\Card\Card0\card0.cpp" />
     <ClCompile Include="Src\Application\Object\Card\Card1\card1.cpp" />
     <ClCompile Include="Src\Application\Object\Card\SqPolyBase.cpp" />
@@ -224,8 +228,10 @@
     <ClCompile Include="Src\Application\Object\Donut\donut.cpp" />
     <ClCompile Include="Src\Application\Object\GLaser\GLaser.cpp" />
     <ClCompile Include="Src\Application\Object\Heli\Heli.cpp" />
+    <ClCompile Include="Src\Application\Object\Heli\Rotor\Rotor.cpp" />
     <ClCompile Include="Src\Application\Object\pplane\pplane.cpp" />
     <ClCompile Include="Src\Application\Object\Seeker\Seeker.cpp" />
+    <ClCompile Include="Src\Application\Object\Stage\Water\Water.cpp" />
     <ClCompile Include="Src\Application\Object\terrain1\terrain1.cpp" />
     <ClCompile Include="Src\Application\Scene\BaseScene\BaseScene.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\GameScene.cpp" />

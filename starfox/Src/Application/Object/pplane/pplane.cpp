@@ -9,22 +9,28 @@ void PPlane::Init()
 
 	m_rot		= Math::Vector3::Zero;		// 角度初期化
 	
-	m_rotMax2	= { 70.0f, 0.0f, 70.0f };	// 角度最大値セット
+	m_rotMax2	= { 40.0f, 0.0f, 40.0f };	// 角度最大値セット
 	m_rotMax	= m_rotMax;					// 角度
 	
-	m_spd[0] = 0.07f;
+	m_spd[0] = 0.10f;
 	m_spd[1] = 0.14f;
 	m_moveSpd	= m_spd[0];					// 移動速度初期化
 
 	// ローリング
 	m_rollCnt = 0;
+	m_rollWaitTime = 12;
 	m_rollFlg = roll::normal;
+
+	// ループ
+	m_loopCnt = 0;
+	m_loopWaitTime = 10;
+	m_loopFlg = loop::normal;
 
 	// 操作キー設定
 	m_key[Throttle]		= 'W';	// 加速
 	m_key[Brake]		= 'S';	// 減速
-	m_key[PitchUp]		= VK_UP;
-	m_key[PitchDown]	= VK_DOWN;
+	m_key[PitchUp]		= 'W';	// ピッチアップ
+	m_key[PitchDown]	= 'S';	// ピッチダウン
 	m_key[RollLeft]		= 'A';	// 左ロール
 	m_key[RollRight]	= 'D';	// 右ロール
 	m_key[YawLeft]		= 'Q';	// ヨー左
@@ -81,12 +87,12 @@ void PPlane::UpdateMove()
 	// 加速
 	if (GetAsyncKeyState(m_key[Throttle]) & 0x8000)
 	{
-		m_moveVec.z = +1.0f;
+		//m_moveVec.z = +1.0f;
 	}
 	// 減速
 	if (GetAsyncKeyState(m_key[Brake]) & 0x8000)
 	{
-		m_moveVec.z = -1.0f;
+		//m_moveVec.z = -1.0f;
 	}
 
 	// 上昇
@@ -105,6 +111,28 @@ void PPlane::UpdateMove()
 		//	m_rot.x += 2.0f;
 		//}
 	}
+
+	// ループ入力
+	if (GetAsyncKeyState(m_key[PitchUp]) & 0x8000)
+	{
+		if (!m_keyFlg[PitchUp])
+		{
+			if (m_loopFlg == loop::normal)
+			{
+				m_loopFlg = loop::WaitLoop;	// ２回目待機状態にする
+			}
+			else if (m_loopFlg == loop::WaitLoop)	// ２回目待機状態だったら
+			{
+				m_loopFlg = loop::ingLoop;	// ２回目押された状態
+			}
+		}
+		m_keyFlg[PitchUp] = true;
+	}
+	else
+	{
+		m_keyFlg[PitchUp] = false;
+	}
+
 	// 下降
 	if (GetAsyncKeyState(m_key[PitchDown]) & 0x8000)
 	{
@@ -149,15 +177,12 @@ void PPlane::UpdateMove()
 	if (GetAsyncKeyState(m_key[RollLeft]) & 0x8000)
 	{
 		m_moveVec.x = -1.0f;
-		if (m_rollCnt == 0)
+		if (m_rollFlg != roll::ingLeft)	// 
 		{
-			if (m_rollFlg != roll::ingLeft)
+			m_rotMax.z = m_rotMax2.z;
+			if (m_rot.z <= m_rotMax.z)
 			{
-				m_rotMax.z = m_rotMax2.z;
-				if (m_rot.z <= m_rotMax.z)
-				{
-					m_rot.z += 3.0f;
-				}
+				m_rot.z += 3.0f;
 			}
 		}
 	}
@@ -256,15 +281,16 @@ void PPlane::UpdateMove()
 	}
 	// ==============================================================================
 
-	// フラグ
+	// ロール
 	switch (m_rollFlg)
 	{
 	case roll::normal:
 				
 		break;
 
+	// === 左 ============================================================
 	case roll::WaitLeft:
-		if (m_rollCnt <= 14)
+		if (m_rollCnt <= m_rollWaitTime)
 		{
 			m_rollCnt += 1;
 		}
@@ -288,8 +314,9 @@ void PPlane::UpdateMove()
 		}
 		break;
 
+	// === 右 ============================================================
 	case roll::WaitRight:
-		if (m_rollCnt <= 14)
+		if (m_rollCnt <= m_rollWaitTime)
 		{
 			m_rollCnt += 1;
 		}
@@ -299,6 +326,7 @@ void PPlane::UpdateMove()
 			m_rollCnt = 0;
 		}
 		break;
+
 	case roll::ingRight:
 		if (m_rot.z > -360.0f)
 		{
@@ -312,26 +340,42 @@ void PPlane::UpdateMove()
 		}
 		break;
 	}
-	
-	if (GetAsyncKeyState(m_key[YawLeft]) && GetAsyncKeyState(m_key[YawRight]))
+
+	// ループ
+	switch (m_loopFlg)
 	{
-		m_moveVec.x = 0.0f;
-	}
-	if (GetAsyncKeyState(m_key[PitchUp]) && GetAsyncKeyState(m_key[PitchDown]))
-	{
-		m_moveVec.y = 0.0f;
-	}
-	if (GetAsyncKeyState(m_key[RollLeft]) || GetAsyncKeyState(m_key[RollRight]))
-	{
-		m_moveSpd = m_spd[1];
-	}
-	else
-	{
-		m_moveSpd = m_spd[0];
+	case loop::normal:
+		
+		break;
+
+	case loop::WaitLoop:
+		if (m_loopCnt <= m_loopWaitTime)
+		{
+			m_loopCnt += 1;
+		}
+		else
+		{
+			m_loopFlg = loop::normal;
+			m_loopCnt = 0;
+		}
+		break;
+
+	case loop::ingLoop:
+		if (m_rot.x > -360.0f)
+		{
+			m_rot.x -= 15.0f;
+		}
+		else
+		{
+			m_rot.x = 0.0f;
+			m_loopFlg = loop::normal;
+			m_loopCnt = 0;
+		}
+		break;
 	}
 }
 
 void PPlane::UpdateMove2()
 {
-	//if ()
+	
 }

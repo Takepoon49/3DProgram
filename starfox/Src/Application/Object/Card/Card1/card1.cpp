@@ -18,7 +18,7 @@ void Card1::Init()
 void Card1::Update()
 {
 	Math::Matrix _TMat =
-		Math::Matrix::CreateTranslation(0.0f, 0.0f, 50.0f);
+		Math::Matrix::CreateTranslation(0.0f, 0.0f, 100.0f);
 
 	m_mWorld = _TMat * (*m_camMat);
 }

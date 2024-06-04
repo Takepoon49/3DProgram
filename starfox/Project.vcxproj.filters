@@ -103,6 +103,18 @@
     <Filter Include="Src\Application\Scene\Object\Heli">
       <UniqueIdentifier>{d0cfdfb4-b4c2-41ec-8779-1c5cb7046b2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\Object\Box">
+      <UniqueIdentifier>{a817d606-9bc7-402f-bbb9-d8087b76b297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\Object\Heli\Rotor">
+      <UniqueIdentifier>{103d9caf-716d-4301-828c-25a4fb1591cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\Object\Stage">
+      <UniqueIdentifier>{ec255f78-27e9-4365-95a5-3390008156a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\Object\Stage\Water">
+      <UniqueIdentifier>{cd11863c-93e1-4a57-9c8d-e2acdde92289}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -300,6 +312,15 @@
     <ClInclude Include="Src\Application\Object\Heli\Heli.h">
       <Filter>Src\Application\Scene\Object\Heli</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Object\Box\Box.h">
+      <Filter>Src\Application\Scene\Object\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Object\Heli\Rotor\Rotor.h">
+      <Filter>Src\Application\Scene\Object\Heli\Rotor</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Object\Stage\Water\Water.h">
+      <Filter>Src\Application\Scene\Object\Stage\Water</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -469,6 +490,15 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Object\Heli\Heli.cpp">
       <Filter>Src\Application\Scene\Object\Heli</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Object\Box\Box.cpp">
+      <Filter>Src\Application\Scene\Object\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Object\Heli\Rotor\Rotor.cpp">
+      <Filter>Src\Application\Scene\Object\Heli\Rotor</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Object\Stage\Water\Water.cpp">
+      <Filter>Src\Application\Scene\Object\Stage\Water</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

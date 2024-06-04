@@ -24,11 +24,11 @@ void Cube::Init(Math::Vector3 _pos)
 
 void Cube::Update()
 {
-	m_pos.z -= 0.065f;
-	if (m_pos.z <= -3.0f)
-	{
-		m_pos.z = 40.0f;
-	}
+	//m_pos.z -= 0.065f;
+	//if (m_pos.z <= -3.0f)
+	//{
+	//	m_pos.z = 40.0f;
+	//}
 
 	m_transMat = Math::Matrix::CreateTranslation(m_pos);
 

@@ -33,6 +33,7 @@ protected :
 	// 継承先シーンで必要ならオーバーライドする
 	virtual void Event();
 	virtual void Init();
+	virtual void ImGuiProcess();
 
 	std::unique_ptr<KdCamera> m_camera = nullptr;
 

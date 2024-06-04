@@ -37,10 +37,19 @@ private:
 		WaitLeft,
 		ingLeft,
 		WaitRight,
-		ingRight
-	};
-	roll			m_rollFlg;
-	float			m_rollCnt;
+		ingRight,
+	}m_rollFlg;
+	int			m_rollCnt;
+	int			m_rollWaitTime;
+
+	enum class loop
+	{
+		normal,
+		WaitLoop,
+		ingLoop
+	}m_loopFlg;
+	int			m_loopCnt;
+	int			m_loopWaitTime;
 
 	enum
 	{

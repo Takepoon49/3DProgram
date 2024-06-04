@@ -6,7 +6,7 @@ void Donut::Init()
 	m_spModel->Load("Asset/Models/Donut/donut.gltf");
 
 	m_pos.x = m_makePosX[m_makeType];
-	m_pos.y = 1.8f;
+	m_pos.y = m_makePosY[m_makeType];
 	m_pos.z = m_makePosZ[m_makeType];
 	
 	m_rot = Math::Vector3::Zero;

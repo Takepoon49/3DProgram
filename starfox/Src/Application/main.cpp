@@ -356,44 +356,44 @@ void Application::ImGuiProcess()
 {
 	//return;
 
-	//========================================================================
-	// ImGui開始
-	//========================================================================
-	ImGui_ImplDX11_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
+	////========================================================================
+	//// ImGui開始
+	////========================================================================
+	//ImGui_ImplDX11_NewFrame();
+	//ImGui_ImplWin32_NewFrame();
+	//ImGui::NewFrame();
 
-	//========================================================================
-	// ImGui 描画処理
-	//========================================================================
+	////========================================================================
+	//// ImGui 描画処理
+	////========================================================================
 
-	// ImGui Demo ウィンドウ表示 ※すごく参考になるウィンドウです。imgui_demo.cpp参照。
-	//ImGui::ShowDemoWindow(nullptr);
+	//// ImGui Demo ウィンドウ表示 ※すごく参考になるウィンドウです。imgui_demo.cpp参照。
+	////ImGui::ShowDemoWindow(nullptr);
 
-	// デバッグウィンドウ
-	if (ImGui::Begin("Debug Window"))
-	{
-		ImGui::Text("FPS : %d", m_fpsController.m_nowfps);
-		ImGui::Text((const char*)u8"日本語表示テスト");
-		ImGui::Text("%d, %.1f", m_TestInt1, m_TestFloat1);
+	//// デバッグウィンドウ
+	//if (ImGui::Begin("Debug Window"))
+	//{
+	//	ImGui::Text("FPS : %d", m_fpsController.m_nowfps);
+	//	ImGui::Text((const char*)u8"日本語表示テスト");
+	//	ImGui::Text("%d, %.1f", m_TestInt1, m_TestFloat1);
 
-		POINT mousePos;
-		GetCursorPos(&mousePos);
+	//	POINT mousePos;
+	//	GetCursorPos(&mousePos);
 
-		float* camPos[3] = { &m_camPos->x, &m_camPos->y, &m_camPos->z };
-		float* camRot[3] = { &m_camRot->x, &m_camRot->y, &m_camRot->z };
+	//	float* camPos[3] = { &m_camPos->x, &m_camPos->y, &m_camPos->z };
+	//	float* camRot[3] = { &m_camRot->x, &m_camRot->y, &m_camRot->z };
 
-		ImGui::Text("%d, %d", mousePos.x, mousePos.y);
-		ImGui::Text("%d, %d", (int)mousePos.x - 640, (int)mousePos.y - 360);
-		ImGui::DragFloat("Fov", m_fov, 1.0f, 1.0f, 360.0f, "%.3f");
-		ImGui::DragFloat3("Pos", *camPos, 0.05f, -100.0f, +100.0f, "%.3f");
-		ImGui::DragFloat3("Rot", *camRot, 0.05f, -100.0f, +100.0f, "%.3f");
-	}
-	ImGui::End();
-	
-	//========================================================================
-	// ImGuiのレンダリング : ここより上にimguiの描画はすること
-	//========================================================================
-	ImGui::Render();
-	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	//	ImGui::Text("%d, %d", mousePos.x, mousePos.y);
+	//	ImGui::Text("%d, %d", (int)mousePos.x - 640, (int)mousePos.y - 360);
+	//	ImGui::DragFloat("Fov", m_fov, 1.0f, 1.0f, 360.0f, "%.3f");
+	//	ImGui::DragFloat3("Pos", *camPos, 0.05f, -100.0f, +100.0f, "%.3f");
+	//	ImGui::DragFloat3("Rot", *camRot, 0.05f, -100.0f, +100.0f, "%.3f");
+	//}
+	//ImGui::End();
+	//
+	////========================================================================
+	//// ImGuiのレンダリング : ここより上にimguiの描画はすること
+	////========================================================================
+	//ImGui::Render();
+	//ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }

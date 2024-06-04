@@ -126,6 +126,8 @@ void BaseScene::DrawSprite()
 
 void BaseScene::DrawDebug()
 {
+	ImGuiProcess();
+
 	// ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== =====
 	// デバッグ情報の描画はこの間で行う
 	KdShaderManager::Instance().m_StandardShader.BeginUnLit();
@@ -146,4 +148,9 @@ void BaseScene::Event()
 void BaseScene::Init()
 {
 	// 各シーンで必要な内容を実装(オーバーライド)する
+}
+
+void BaseScene::ImGuiProcess()
+{
+
 }
